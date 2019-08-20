@@ -1,6 +1,4 @@
-# author: zeta & jisagi
-set ERRORMSG "Dumping failed.\nUnknown error."
-set SUCCESSMSG "Dumping succeeded!\nFiles are in gm9/out"
+# author: zeta , jisagi & Glazed_Belmont 
 
 @start
 set DISPLAY_MODE "PKMN Randomizer script\nby Zeta\nTYPE: ______"

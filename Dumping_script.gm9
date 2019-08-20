@@ -1,7 +1,7 @@
 # author: zeta , jisagi & Glazed_Belmont 
 
 @start
-set DISPLAY_MODE "PKMN Randomizer script\nby Zeta\nTYPE: ______"
+set DISPLAY_MODE "PKMN Randomizer script\nTYPE: ______"
 
 labelsel -o -s "Is your game a cartridge or digital?" TYPE_*
 goto start
@@ -9,7 +9,7 @@ goto start
 ###CARTRIDGE###
 @TYPE_Cartridge
 
-set DISPLAY_MODE "PKMN Randomizer script\nby Zeta & Glazed_Belmont\nTYPE_CARTRIDGE 
+set DISPLAY_MODE "PKMN Randomizer script\nTYPE_CARTRIDGE 
 ask "Script will begin dumping."
 if not find -o -s C:/*.trim.3ds CARTRIDGE
 	echo "No 3DS cart was detected"
@@ -94,7 +94,7 @@ goto Update_Dump
 ###DIGITAL###
 @TYPE_Digital
 
-set DISPLAY_MODE "PKMN Randomizer script\nby Zeta & Glazed_Belmont\nTYPE_DIGITAL
+set DISPLAY_MODE "PKMN Randomizer script\nTYPE_DIGITAL
 ask "Script will begin dumping."
 
 labelsel -o -s "What game are you dumping?" DIGITAL_*
@@ -299,5 +299,11 @@ goto end
 @CARTRIDGE_Back
 goto start
 
+
+##Credits##
+@TYPE_Credits
+
+echo "This script was made possible by:\nZeta\nJisagi\nGlazed_Belmont"
+goto start
 
 @end

@@ -1,0 +1,305 @@
+# author: zeta & jisagi
+set ERRORMSG "Dumping failed.\nUnknown error."
+set SUCCESSMSG "Dumping succeeded!\nFiles are in gm9/out"
+
+@start
+set DISPLAY_MODE "PKMN Randomizer script\nby Zeta\nTYPE: ______"
+
+labelsel -o -s "Is your game a cartridge or digital?" TYPE_*
+goto start
+
+###CARTRIDGE###
+@TYPE_Cartridge
+
+set DISPLAY_MODE "PKMN Randomizer script\nby Zeta & Glazed_Belmont\nTYPE_CARTRIDGE 
+ask "Script will begin dumping."
+if not find -o -s C:/*.trim.3ds CARTRIDGE
+	echo "No 3DS cart was detected"
+	goto end
+end
+
+imgmount $[CARTRIDGE]
+mkdir 0:/gm9/out/romfs
+mkdir 0:/gm9/out/exefs
+
+if not cp -o -s G:/content0.game/romfs/ 0:/gm9/out/romfs
+	echo "Dumping romfs failed"
+	goto end
+end
+
+if not cp -o -s G:/content0.game/exefs/ 0:/gm9/out/exefs
+	echo "Dumping exefs failed"
+	goto end
+end
+
+labelsel -o -s "What game are you dumping?" CARTRIDGE_*
+
+##PKMN X##
+@CARTRIDGE_X
+
+set GAMEID 00055D00
+goto Update_Dump
+
+
+##PKMN Y##
+@CARTRIDGE_Y
+
+set GAMEID 00055E00
+goto Update_Dump
+
+
+##PKMN OR##
+@CARTRIDGE_Omega_Ruby
+
+set GAMEID 0011C400
+goto Update_Dump
+
+
+##PKMN AS##
+@CARTRIDGE_Alpha_Sapphire
+
+set GAMEID 0011C500
+goto Update_Dump
+
+
+##PKMN SUN##
+@CARTRIDGE_Sun
+
+set GAMEID 00164800
+goto Update_Dump
+
+
+##PKMN MOON##
+@CARTRIDGE_Moon
+
+set GAMEID 00175E00
+goto Update_Dump
+
+
+##PKMN US##
+@CARTRIDGE_Ultra_Sun
+
+set GAMEID 001B5000
+goto Update_Dump
+
+
+##PKMN UM##
+@CARTRIDGE_Ultra_Moon
+
+set GAMEID 001B5100
+goto Update_Dump
+
+
+#-------------------------------------------------------------------------------#
+
+
+###DIGITAL###
+@TYPE_Digital
+
+set DISPLAY_MODE "PKMN Randomizer script\nby Zeta & Glazed_Belmont\nTYPE_DIGITAL
+ask "Script will begin dumping."
+
+labelsel -o -s "What game are you dumping?" DIGITAL_*
+
+###PKMN X###
+@DIGITAL_X
+
+set X "A:/title/00040000/00055D00"
+if not isdir -o -s $[X]
+	echo "The game wasn't found.\nMake sure you have Pokemon X installed."
+	goto start
+end
+
+if not ask -o -s "The game was found, Continue?"
+	goto start
+end
+
+
+set GAMEID 00055D00
+goto Digital_Dump
+
+
+###PKMN Y###
+@DIGITAL_Y
+
+set Y "A:/title/00040000/00055E00"
+if not isdir -o -s $[Y]
+	echo "The game wasn't found.\nMake sure you have Pokemon Y installed."
+	goto start
+end
+
+if not ask -o -s "The game was found, Continue?"
+	goto start
+end
+
+
+set GAMEID 00055E00
+goto Digital_Dump
+
+
+###PKMN OMEGA RUBY###
+@DIGITAL_Omega_Ruby
+
+set OR "A:/title/00040000/0011C400"
+if not isdir -o -s $[OR]
+	echo "The game wasn't found.\nMake sure you have Pokemon Omega Ruby installed."
+	goto start
+end
+
+if not ask -o -s "The game was found, Continue?"
+	goto start
+end
+
+set GAMEID 0011C400
+goto Digital_Dump
+
+
+###PKMN ALPHA SAPPHIRE###
+@DIGITAL_Alpha_Sapphire
+
+set AS "A:/title/00040000/0011C500"
+if not isdir -o -s $[AS]
+	echo "The game wasn't found.\nMake sure you have Pokemon Alpha Sapphire installed."
+	goto start
+end
+
+if not ask -o -s "The game was found, Continue?"
+	goto start
+end
+
+set GAMEID 0011C500
+goto Digital_Dump
+
+
+###PKMN SUN###
+@DIGITAL_Sun
+
+set S "A:/title/00040000/00164800"
+if not isdir -o -s $[S]
+	echo "The game wasn't found.\nMake sure you have Pokemon Sun installed."
+	goto start
+end
+
+if not ask -o -s "The game was found, Continue?"
+	goto start
+end
+
+set GAMEID 00164800
+goto Digital_Dump
+
+
+###PKMN MOON###
+@DIGITAL_Moon
+
+set M "A:/title/00040000/00175E00"
+if not isdir -o -s $[M]
+	echo "The game wasn't found.\nMake sure you have Pokemon Moon installed."
+	goto start
+end
+
+if not ask -o -s "The game was found, Continue?"
+	goto start
+end
+
+set GAMEID 00175E00
+goto Digital_Dump
+
+
+###PKMN ULTRA SUN###
+@DIGITAL_Ultra_Sun
+
+set US "A:/title/00040000/001B5000"
+if not isdir -o -s $[US]
+	echo "The game wasn't found.\nMake sure you have Pokemon Ultra Sun installed."
+	goto start
+end
+
+if not ask -o -s "The game was found, Continue?"
+	goto start
+end
+
+set GAMEID 001B5000
+goto Digital_Dump
+
+
+###PKMN ULTRA MOON###
+@DIGITAL_Ultra_Moon
+
+set UM "A:/title/00040000/001B5100"
+if not isdir -o -s $[UM]
+	echo "The game wasn't found.\nMake sure you have Pokemon Ultra Moon installed."
+	goto start
+end
+
+if not ask -o -s "The game was found, Continue?"
+	goto start
+end
+
+set GAMEID 001B5100
+goto Digital_Dump
+
+
+#---------------------------------------------------------------------------------------------#
+
+
+###Digital_Dump###
+@Digital_Dump
+
+filesel "Please select the bigger .app file" A:/title/00040000/$[GAMEID]/content/*.app GAME
+imgmount $[GAME]
+mkdir 0:/gm9/out/romfs
+mkdir 0:/gm9/out/exefs
+
+set ERRORMSG "Dumping failed.\nCopying romfs/exefs failed."
+if not cp -o -s G:/romfs/ 0:/gm9/out/romfs
+	echo "Dumping romfs failed"
+	goto end
+end
+
+if not cp -o -s G:/exefs/ 0:/gm9/out/exefs
+	echo "Dumping exefs failed"
+	goto end
+end
+goto Update_Dump
+
+
+###Update_Dump###
+@Update_Dump
+
+echo "RomFS and ExeFS dumping done\nDumping the update now."
+if not find -o -s A:/title/0004000e/$[GAMEID]/content/0000000?.app UPDATE
+	echo "No updates were found.\nMake sure you have them installed."
+	goto end
+end
+
+if not ask "The update was found, Continue?"
+	goto start
+end
+
+imgmount $[UPDATE]
+
+if not cp -o -s G:/romfs/ 0:/gm9/out/romfs
+	echo "Dumping romfs failed"
+	goto end
+end
+
+if not cp -o -s G:/exefs/ 0:/gm9/out/exefs
+	echo "Dumping exefs failed"
+	goto end
+end
+
+echo "Dumping finished properly
+goto end
+
+##EXITING##
+@TYPE_Exit
+
+goto end
+
+##GOING BACK##
+@DIGITAL_Back
+@CARTRIDGE_Back
+goto start
+
+
+@end

@@ -1,7 +1,7 @@
 # author: zeta , jisagi & Glazed_Belmont 
 
 @start
-set DISPLAY_MODE "PKMN Randomizer script\nTYPE: ______"
+set DISPLAY_MODE "PKMN Randomizer script
 
 labelsel -o -s "Is your game a cartridge or digital install?" TYPE_*
 goto start
@@ -39,7 +39,6 @@ labelsel -o -s "What game are you dumping?" CARTRIDGE_*
 @TYPE_Digital
 
 set DISPLAY_MODE "PKMN Randomizer script\nTYPE_DIGITAL"
-ask "Script will begin dumping."
 
 labelsel -o -s "What game are you dumping?" DIGITAL_*
 

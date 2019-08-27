@@ -3,7 +3,7 @@
 @start
 set DISPLAY_MODE "PKMN Randomizer script\nTYPE: ______"
 
-labelsel -o -s "Is your game a cartridge or digital?" TYPE_*
+labelsel -o -s "Is your game a cartridge or digital install?" TYPE_*
 goto start
 
 ###CARTRIDGE###

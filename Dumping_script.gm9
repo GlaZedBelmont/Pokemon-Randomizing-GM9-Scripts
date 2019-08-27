@@ -32,62 +32,6 @@ end
 
 labelsel -o -s "What game are you dumping?" CARTRIDGE_*
 
-##PKMN X##
-@CARTRIDGE_X
-
-set GAMEID 00055D00
-goto Update_Dump
-
-
-##PKMN Y##
-@CARTRIDGE_Y
-
-set GAMEID 00055E00
-goto Update_Dump
-
-
-##PKMN OR##
-@CARTRIDGE_Omega_Ruby
-
-set GAMEID 0011C400
-goto Update_Dump
-
-
-##PKMN AS##
-@CARTRIDGE_Alpha_Sapphire
-
-set GAMEID 0011C500
-goto Update_Dump
-
-
-##PKMN SUN##
-@CARTRIDGE_Sun
-
-set GAMEID 00164800
-goto Update_Dump
-
-
-##PKMN MOON##
-@CARTRIDGE_Moon
-
-set GAMEID 00175E00
-goto Update_Dump
-
-
-##PKMN US##
-@CARTRIDGE_Ultra_Sun
-
-set GAMEID 001B5000
-goto Update_Dump
-
-
-##PKMN UM##
-@CARTRIDGE_Ultra_Moon
-
-set GAMEID 001B5100
-goto Update_Dump
-
-
 #-------------------------------------------------------------------------------#
 
 
@@ -100,6 +44,11 @@ ask "Script will begin dumping."
 labelsel -o -s "What game are you dumping?" DIGITAL_*
 
 ###PKMN X###
+@CARTRIDGE_X
+
+set GAMEID 00055D00
+goto Update_Dump
+
 @DIGITAL_X
 
 set X "A:/title/00040000/00055D00"
@@ -108,16 +57,16 @@ if not isdir -o -s $[X]
 	goto start
 end
 
-if not ask -o -s "The game was found, Continue?"
-	goto start
-end
-
-
 set GAMEID 00055D00
-goto Digital_Dump
+goto Confirm
 
 
 ###PKMN Y###
+@CARTRIDGE_Y
+
+set GAMEID 00055E00
+goto Update_Dump
+
 @DIGITAL_Y
 
 set Y "A:/title/00040000/00055E00"
@@ -126,16 +75,16 @@ if not isdir -o -s $[Y]
 	goto start
 end
 
-if not ask -o -s "The game was found, Continue?"
-	goto start
-end
-
-
 set GAMEID 00055E00
-goto Digital_Dump
+goto Confirm
 
 
 ###PKMN OMEGA RUBY###
+@CARTRIDGE_Omega_Ruby
+
+set GAMEID 0011C400
+goto Update_Dump
+
 @DIGITAL_Omega_Ruby
 
 set OR "A:/title/00040000/0011C400"
@@ -144,15 +93,16 @@ if not isdir -o -s $[OR]
 	goto start
 end
 
-if not ask -o -s "The game was found, Continue?"
-	goto start
-end
-
 set GAMEID 0011C400
-goto Digital_Dump
+goto Confirm
 
 
 ###PKMN ALPHA SAPPHIRE###
+@CARTRIDGE_Alpha_Sapphire
+
+set GAMEID 0011C500
+goto Update_Dump
+
 @DIGITAL_Alpha_Sapphire
 
 set AS "A:/title/00040000/0011C500"
@@ -161,15 +111,16 @@ if not isdir -o -s $[AS]
 	goto start
 end
 
-if not ask -o -s "The game was found, Continue?"
-	goto start
-end
-
 set GAMEID 0011C500
-goto Digital_Dump
+goto Confirm
 
 
 ###PKMN SUN###
+@CARTRIDGE_Sun
+
+set GAMEID 00164800
+goto Update_Dump
+
 @DIGITAL_Sun
 
 set S "A:/title/00040000/00164800"
@@ -178,15 +129,16 @@ if not isdir -o -s $[S]
 	goto start
 end
 
-if not ask -o -s "The game was found, Continue?"
-	goto start
-end
-
 set GAMEID 00164800
-goto Digital_Dump
+goto Confirm
 
 
 ###PKMN MOON###
+@CARTRIDGE_Moon
+
+set GAMEID 00175E00
+goto Update_Dump
+
 @DIGITAL_Moon
 
 set M "A:/title/00040000/00175E00"
@@ -195,15 +147,16 @@ if not isdir -o -s $[M]
 	goto start
 end
 
-if not ask -o -s "The game was found, Continue?"
-	goto start
-end
-
 set GAMEID 00175E00
-goto Digital_Dump
+goto Confirm
 
 
 ###PKMN ULTRA SUN###
+@CARTRIDGE_Ultra_Sun
+
+set GAMEID 001B5000
+goto Update_Dump
+
 @DIGITAL_Ultra_Sun
 
 set US "A:/title/00040000/001B5000"
@@ -212,15 +165,16 @@ if not isdir -o -s $[US]
 	goto start
 end
 
-if not ask -o -s "The game was found, Continue?"
-	goto start
-end
-
 set GAMEID 001B5000
-goto Digital_Dump
+goto Confirm
 
 
 ###PKMN ULTRA MOON###
+@CARTRIDGE_Ultra_Moon
+
+set GAMEID 001B5100
+goto Update_Dump
+
 @DIGITAL_Ultra_Moon
 
 set UM "A:/title/00040000/001B5100"
@@ -229,13 +183,8 @@ if not isdir -o -s $[UM]
 	goto start
 end
 
-if not ask -o -s "The game was found, Continue?"
-	goto start
-end
-
 set GAMEID 001B5100
-goto Digital_Dump
-
+goto Confirm
 
 #---------------------------------------------------------------------------------------------#
 
@@ -288,6 +237,17 @@ end
 
 echo "Dumping finished properly"
 goto end
+
+
+##Confirm##
+@Confirm
+
+if not ask -o -s "The game was found, Continue?"
+	goto start
+end
+
+goto Digital_Dump
+
 
 ##EXITING##
 @TYPE_Exit

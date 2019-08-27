@@ -30,7 +30,9 @@ if not cp -o -s G:/content0.game/exefs/ 0:/gm9/out/exefs
 	goto end
 end
 
-labelsel -o -s "What game are you dumping?" CARTRIDGE_*
+if not -o -s labelsel -o -s "What game are you dumping?" CARTRIDGE_*
+	goto start
+end
 
 #-------------------------------------------------------------------------------#
 
@@ -40,7 +42,9 @@ labelsel -o -s "What game are you dumping?" CARTRIDGE_*
 
 set DISPLAY_MODE "PKMN Randomizer script\nTYPE_DIGITAL"
 
-labelsel -o -s "What game are you dumping?" DIGITAL_*
+if not -o -s labelsel -o -s "What game are you dumping?" DIGITAL_*
+	goto start
+end
 
 ###PKMN X###
 @CARTRIDGE_X
@@ -191,7 +195,10 @@ goto Confirm
 ###Digital_Dump###
 @Digital_Dump
 
-filesel "Please select the bigger .app file" A:/title/00040000/$[GAMEID]/content/*.app GAME
+if not -o -s filesel "Please select the bigger .app file" A:/title/00040000/$[GAMEID]/content/*.app GAME
+	goto start
+end
+
 imgmount $[GAME]
 mkdir 0:/gm9/out/romfs
 mkdir 0:/gm9/out/exefs

@@ -9,7 +9,7 @@ goto start
 ###CARTRIDGE###
 @TYPE_Cartridge
 
-set DISPLAY_MODE "PKMN Randomizer script\nTYPE_CARTRIDGE 
+set DISPLAY_MODE "PKMN Randomizer script\nTYPE_CARTRIDGE"
 ask "Script will begin dumping."
 if not find -o -s C:/*.trim.3ds CARTRIDGE
 	echo "No 3DS cart was detected"
@@ -94,7 +94,7 @@ goto Update_Dump
 ###DIGITAL###
 @TYPE_Digital
 
-set DISPLAY_MODE "PKMN Randomizer script\nTYPE_DIGITAL
+set DISPLAY_MODE "PKMN Randomizer script\nTYPE_DIGITAL"
 ask "Script will begin dumping."
 
 labelsel -o -s "What game are you dumping?" DIGITAL_*

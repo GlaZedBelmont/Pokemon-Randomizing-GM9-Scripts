@@ -1,7 +1,7 @@
 # author: zeta , jisagi & Glazed_Belmont 
 
 @start
-set DISPLAY_MODE "PKMN Randomizer script
+set DISPLAY_MODE "PKMN Randomizer script"
 
 labelsel -o -s "Is your game a cartridge or digital install?" TYPE_*
 goto start

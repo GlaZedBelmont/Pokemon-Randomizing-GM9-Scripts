@@ -286,7 +286,7 @@ if not cp -o -s G:/exefs/ 0:/gm9/out/exefs
 	goto end
 end
 
-echo "Dumping finished properly
+echo "Dumping finished properly"
 goto end
 
 ##EXITING##

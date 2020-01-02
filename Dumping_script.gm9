@@ -1,7 +1,7 @@
 # author: zeta , jisagi & Glazed_Belmont 
 
 @start
-set DISPLAY_MODE "PKMN Randomizer script"
+set PREVIEW_MODE "PKMN Randomizer script"
 
 labelsel -o -s "Is your game a cartridge or digital install?" TYPE_*
 goto start
@@ -9,7 +9,7 @@ goto start
 ###CARTRIDGE###
 @TYPE_Cartridge
 
-set DISPLAY_MODE "PKMN Randomizer script\nTYPE_CARTRIDGE"
+set PREVIEW_MODE "PKMN Randomizer script\nTYPE_CARTRIDGE"
 ask "Script will begin dumping."
 if not find -o -s C:/*.trim.3ds CARTRIDGE
 	echo "No 3DS cart was detected"
@@ -40,7 +40,7 @@ end
 ###DIGITAL###
 @TYPE_Digital
 
-set DISPLAY_MODE "PKMN Randomizer script\nTYPE_DIGITAL"
+set PREVIEW_MODE "PKMN Randomizer script\nTYPE_DIGITAL"
 
 if not -o -s labelsel -o -s "What game are you dumping?" DIGITAL_*
 	goto start
